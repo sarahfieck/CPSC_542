@@ -7,9 +7,9 @@
     e. HW 1 - Convolutional Neural Network
 
 # A description of any known compile or runtime errors, code limitations, or deviations from the assignment specification (if applicable)
-Difficulty getting the Confusion Matrix to run, could not get that to run.
-Could not run the class_dist() function locally, but had no problem on the server & Colab
-Was able to do so on the server & Colab, but may experience difficulty running metrics() locally. 
+- Difficulty getting the Confusion Matrix to run, could not get that to run.
+- Could not run the class_dist() function locally, but had no problem on the server & Colab
+- Was able to do so on the server & Colab, but may experience difficulty running metrics() locally. 
 
 # A list of all references used to complete the assignment, including peers (if applicable)
 GradCAM Heatmap Activation Visual: https://keras.io/examples/vision/grad_cam/
