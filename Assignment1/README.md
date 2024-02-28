@@ -5,6 +5,7 @@
     c. fieck@chapman.edu
     d. CPSC 542
     e. HW 1 - Convolutional Neural Network
+    f. Link to Repo: https://github.com/sarahfieck/CPSC_542/tree/main/Assignment1
 
 # A description of any known compile or runtime errors, code limitations, or deviations from the assignment specification (if applicable)
 - Difficulty getting the Confusion Matrix to run, could not get that to run.
