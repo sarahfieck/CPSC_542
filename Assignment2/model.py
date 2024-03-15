@@ -79,10 +79,7 @@ def unet_model(train_gen, test_gen):
 
     model = Model(inputs = inp, outputs = out)
 
-    model.compile(optimizer = Adam(), 
-                loss = BinaryCrossentropy(), 
-                metrics = ['accuracy', keras.metrics.IoU(num_classes = 2, target_class_ids=[0])])
-
+    model.compile(optimizer = Adam(), loss = BinaryCrossentropy(), metrics = ['accuracy', keras.metrics.IoU(num_classes = 2, target_class_ids=[1])])
 
     history = model.fit(train_gen, validation_data = test_gen, epochs = 100)
     model.save('unet_model.h5')
