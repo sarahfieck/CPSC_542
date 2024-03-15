@@ -25,4 +25,6 @@
 - Concatenated Skip Connection: https://paperswithcode.com/method/concatenated-skip-connection
 - Pytorch-UNet Repo: https://github.com/milesial/Pytorch-UNet/tree/67bf11b4db4c5f2891bd7e8e7f58bcde8ee2d2db
 - Sample Weight Idea: https://github.com/keras-team/keras/issues/6629
+- How to use class weights in Keras for image segmentation: https://stackoverflow.com/questions/65881582/how-to-use-class-weights-in-keras-for-image-segmentation
+- How to use sample_weight_mode='temporal'?: https://groups.google.com/g/keras-users/c/kBaptvMsKMc
 
