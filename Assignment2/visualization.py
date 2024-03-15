@@ -24,8 +24,6 @@ from numpy import expand_dims
 from tensorflow.keras.preprocessing.image import load_img,img_to_array
 import tensorflow.keras as kb
 
-
-
 # Loss Metric Plot
 def loss(model):
     # Reads the behavior of the training & testing process
@@ -90,7 +88,8 @@ def iou(model):
     plt.legend()
     plt.show()
     plt.savefig("iou_plot.png")
-
+    
+# Generates a visual that compares the original image & mask to the predicted output segmentation mask.
 def true_vs_pred(testp, truemsk, model):
     test = cv2.imread(testp)
     true_mask = cv2.imread(truemsk, cv2.IMREAD_GRAYSCALE)
@@ -117,7 +116,8 @@ def true_vs_pred(testp, truemsk, model):
 
     plt.savefig('seg.png')
 
-# Convolutional Layer Activation Visuals
+# Convolutional Layer Activation Visuals: Shows what the different convolutional layers see & what portions of the image are activated,
+# Inspired by https://colab.research.google.com/drive/1MU8SpEAAf9xMuUzF0c8jEBZVBIUNbb1B
 def conv_layers(model, img):
     # Loading in vars
     model = tf.keras.models.load_model(model)
