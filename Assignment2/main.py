@@ -47,6 +47,7 @@ newest_train_mask = "./nu_dir/train/mask_train"
 # Data Augmentation
 image = (128, 128)
 batch = 32
+# weights = {0: 1, 1: 3} <- The weights if I could use them......
 
 train_gen = SegGenerator(newest_train_image, newest_train_mask, batch, image, augment = True)
 test_gen = SegGenerator(newest_test_image, newest_test_mask, batch, image, augment = False)
