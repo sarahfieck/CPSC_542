@@ -51,25 +51,25 @@ def unet_model(train_gen, test_gen):
     bottle = norm5
 
     # Decoder - Time to upsample, recreate our input and get a segmentation
-    upsample6 = Conv2DTranspose(256, 2, strides=(2, 2), padding='same')(bottle)
+    upsample6 = Conv2DTranspose(512, 2, strides=(2, 2), padding='same')(bottle)
     merge6 = concatenate([conv4, upsample6], axis = 3) # https://paperswithcode.com/method/concatenated-skip-connection
     conv6 = Conv2D(512, 3, activation='relu', padding='same')(merge6)
     conv6 = Conv2D(512, 3, activation='relu', padding='same')(conv6)
     layer6 = Dropout(0.4)(conv6)
 
-    upsample7 = Conv2DTranspose(128, 2, strides=(2, 2), padding='same')(conv6)
+    upsample7 = Conv2DTranspose(256, 2, strides=(2, 2), padding='same')(conv6)
     merge7 = concatenate([conv3, upsample7], axis = 3)
     conv7 = Conv2D(256, 3, activation='relu', padding='same')(merge7)
     conv7 = Conv2D(256, 3, activation='relu', padding='same')(conv7)
     layer7 = BatchNormalization()(conv7)
 
-    upsample8 = Conv2DTranspose(64, 2, strides=(2, 2), padding='same')(conv7)
+    upsample8 = Conv2DTranspose(128, 2, strides=(2, 2), padding='same')(conv7)
     merge8 = concatenate([conv2, upsample8], axis = 3)
     conv8 = Conv2D(128, 3, activation='relu', padding='same')(merge8)
     conv8 = Conv2D(128, 3, activation='relu', padding='same')(conv8)
     layer8 = Dropout(0.3)(conv8)
 
-    upsample9 = Conv2DTranspose(32, 2, strides=(2, 2), padding='same')(conv8)
+    upsample9 = Conv2DTranspose(64, 2, strides=(2, 2), padding='same')(conv8)
     merge9 = concatenate([conv1, upsample9], axis = 3)
     conv9 = Conv2D(64, 3, activation='relu', padding='same')(merge9)
     conv9 = Conv2D(64, 3, activation='relu', padding='same')(conv9)
