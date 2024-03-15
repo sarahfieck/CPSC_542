@@ -81,7 +81,7 @@ def unet_model(train_gen, test_gen):
 
     model.compile(optimizer = Adam(), loss = BinaryCrossentropy(), metrics = ['accuracy', keras.metrics.IoU(num_classes = 2, target_class_ids=[1])])
 
-    history = model.fit(train_gen, validation_data = test_gen, epochs = 100)
+    history = model.fit(train_gen, validation_data = test_gen, epochs = 100, sample_weight_mode="temporal")
     model.save('unet_model.h5')
 
     # Pickle the behavior to file
