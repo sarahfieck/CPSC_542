@@ -35,6 +35,7 @@ class SegGenerator(keras.utils.Sequence):
         self.batchsz = batchsz
         self.imagesz = imagesz
         self.augment = False
+        self.class_weights = class_weights  # Possible class weight??
 
         # Augmentation details
         if self.augment:
@@ -78,6 +79,7 @@ class SegGenerator(keras.utils.Sequence):
             batch_mk2 = self.maskp[idx * self.batchsz:(idx + 1) * self.batchsz]
             batch_img = np.array([cv2.resize(cv2.imread(file_path), self.imagesz) for file_path in batch_path])
             batch_mk = np.array([cv2.resize(cv2.imread(file_path, cv2.IMREAD_GRAYSCALE), self.imagesz) for file_path in batch_mk2])
+            sample_weights = np.take(np.array(self.class_weights), np.round(y[:, :, :, :, 1]).astype('int'))  # Potentially adds weights?
             # print("Augmentation debug")
 
             # Augmentation: Image & Masks
@@ -92,4 +94,4 @@ class SegGenerator(keras.utils.Sequence):
             batch_mk = batch_mk.astype(np.float32) / 255.0
 
             # print("Augmentation complete")
-            return batch_img, batch_mk
+            return batch_img, batch_mk, class_weights
