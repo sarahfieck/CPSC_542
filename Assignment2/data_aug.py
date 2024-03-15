@@ -37,7 +37,7 @@ class SegGenerator(keras.utils.Sequence):
         self.augment = False
         # self.class_weights = class_weights  # Possible class weight?? Does not work rn
 
-        # Augmentation details
+        # Augmentation details, allowing for variety in our dataset
         if self.augment:
             self.imagegen = ImageDataGenerator(
                 rescale = 1./255,
@@ -68,7 +68,7 @@ class SegGenerator(keras.utils.Sequence):
         return int(np.floor(len(self.imgp) / self.batchsz))
 
     def __getitem__(self, idx):
-
+            # Augments the masks based on the batch
             def augment_masks(batch_mk, maskgen):
                 batch_mk2 = np.expand_dims(batch_mk, axis=-1)
                 augment_mk = np.array([maskgen.random_transform(mask) for mask in batch_mk2])
