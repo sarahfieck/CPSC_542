@@ -15,6 +15,7 @@ import pickle5 as pickle
 from tensorflow.keras.layers import *
 from tensorflow.keras.losses import BinaryCrossentropy
 
+# U_Net compiled, fitted, and saved all here!
 def unet_model(train_gen, test_gen):
 
     # model_checkpoint_path = os.path.join(save_dir, 'best_model.h5')
@@ -77,11 +78,12 @@ def unet_model(train_gen, test_gen):
     
     out = Conv2D(1, 1, activation = 'sigmoid')(layer9)
 
+    # Setting up and running the model
     model = Model(inputs = inp, outputs = out)
+    model.compile(optimizer = Adam(), loss = BinaryCrossentropy(), metrics = ['accuracy', keras.metrics.IoU(num_classes = 2, target_class_ids=[1])]) # Would include sample_weight_mode="temporal" in the compile section to include the weights if it worked >:(
+    history = model.fit(train_gen, validation_data = test_gen, epochs = 100)
 
-    model.compile(optimizer = Adam(), loss = BinaryCrossentropy(), metrics = ['accuracy', keras.metrics.IoU(num_classes = 2, target_class_ids=[1])])
-
-    history = model.fit(train_gen, validation_data = test_gen, epochs = 100, sample_weight_mode="temporal")
+    # Save the file
     model.save('unet_model.h5')
 
     # Pickle the behavior to file
