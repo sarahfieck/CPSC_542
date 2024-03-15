@@ -5,7 +5,7 @@
     c. fieck@chapman.edu
     d. CPSC 542
     e. HW 2 - Image Segmentation
-    f. Link to Repo: 
+    f. Link to Repo: https://github.com/sarahfieck/CPSC_542/edit/main/Assignment2
 
 # A description of any known compile or runtime errors, code limitations, or deviations from the assignment specification (if applicable)
 - True vs. Predicted Masks were not able to properly generate an adequate mask
@@ -24,4 +24,5 @@
 - Create U-Net from Scratch: https://www.machinelearningnuggets.com/image-segmentation-with-u-net-define-u-net-model-from-scratch-in-keras-and-tensorflow/
 - Concatenated Skip Connection: https://paperswithcode.com/method/concatenated-skip-connection
 - Pytorch-UNet Repo: https://github.com/milesial/Pytorch-UNet/tree/67bf11b4db4c5f2891bd7e8e7f58bcde8ee2d2db
+- Sample Weight Idea: https://github.com/keras-team/keras/issues/6629
 
