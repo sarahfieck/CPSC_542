@@ -32,10 +32,10 @@ class SegGenerator(keras.utils.Sequence):
     def __init__(self, images, masks, batchsz, imagesz, augment):
         self.imgp = [os.path.join(images, img) for img in os.listdir(images)]
         self.maskp = [os.path.join(masks, mask) for mask in os.listdir(masks)]
-        self.batchsz = batchsz
-        self.imagesz = imagesz
+        # self.batchsz = batchsz # Batch Size
+        self.imagesz = imagesz # Image Size
         self.augment = False
-        self.class_weights = class_weights  # Possible class weight??
+        # self.class_weights = class_weights  # Possible class weight?? Does not work rn
 
         # Augmentation details
         if self.augment:
@@ -79,7 +79,7 @@ class SegGenerator(keras.utils.Sequence):
             batch_mk2 = self.maskp[idx * self.batchsz:(idx + 1) * self.batchsz]
             batch_img = np.array([cv2.resize(cv2.imread(file_path), self.imagesz) for file_path in batch_path])
             batch_mk = np.array([cv2.resize(cv2.imread(file_path, cv2.IMREAD_GRAYSCALE), self.imagesz) for file_path in batch_mk2])
-            sample_weights = np.take(np.array(self.class_weights), np.round(y[:, :, :, :, 1]).astype('int'))  # Potentially adds weights?
+            # sample_weights = np.take(np.array(self.class_weights), np.round(y[:, :, 1]).astype('int'))  # Potentially adds weights? Does not work rn
             # print("Augmentation debug")
 
             # Augmentation: Image & Masks
@@ -94,4 +94,5 @@ class SegGenerator(keras.utils.Sequence):
             batch_mk = batch_mk.astype(np.float32) / 255.0
 
             # print("Augmentation complete")
-            return batch_img, batch_mk, class_weights
+            return batch_img, batch_mk
+        # Would include the weights as a return value if it worked :(
