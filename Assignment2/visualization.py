@@ -24,7 +24,7 @@ from numpy import expand_dims
 from tensorflow.keras.preprocessing.image import load_img,img_to_array
 import tensorflow.keras as kb
 
-# Loss Metric Plot
+# Loss Metric Plot: Shows the change in binary cross entropy over epochs
 def loss(model):
     # Reads the behavior of the training & testing process
     with open(model, 'rb') as f:
@@ -46,7 +46,7 @@ def loss(model):
     plt.show()
     plt.savefig('loss_plot.png') 
 
-# Accuracy Metrics
+# Accuracy Metrics: Shows the change in accuracy over epochs
 def acc(model):
     # Reads the behavior of the training & testing process
     with open(model, 'rb') as f:
@@ -68,7 +68,7 @@ def acc(model):
     plt.savefig("accuracy_plot.png")
     
 
-# IOU Metrics
+# IOU Metrics: Shows the change in IOU over epochs
 def iou(model):
         # Reads the behavior of the training & testing process
     with open(model, 'rb') as f:
@@ -103,14 +103,20 @@ def true_vs_pred(testp, truemsk, model):
     inp = inp / 255.0  # Normalize
     predmsk = model.predict(inp)
     predmsk = np.argmax(predmsk, axis=-1)
-    predmsk_binary = tf.cast(predmsk > 0.5, dtype=tf.float32) # Since we are making a binary model
+    predmsk_binary = tf.cast(predmsk > 0.5, dtype=tf.float32) # Since we are making a binary model, we want a threshold to work with
 
     # Plotting the three visuals together to compare
     fig, axs = plt.subplots(1, 3, figsize=(15, 5))
+
+    # Test Image
     axs[0].imshow(test)
     axs[0].set_title('Test Image')
+
+    # Assigned Mapping
     axs[1].imshow(true_mask, cmap='gray')
     axs[1].set_title('Actual Mask')
+
+    # Predicted Map: Why does this not work? Tried setting it to predmsk_binary[1], got errors.
     axs[2].imshow(predmsk_binary[0], cmap='gray')
     axs[2].set_title('Predict Mask')
 
