@@ -3,7 +3,6 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-import tensorflow_datasets as tfds
 import matplotlib.pyplot as plt
 import numpy as np
 from tensorflow.keras.optimizers import Adam
@@ -13,7 +12,6 @@ import cv2
 import os
 import pickle5 as pickle
 from tensorflow.keras.layers import *
-from tensorflow.keras.losses import BinaryCrossentropy
 
 # U_Net compiled, fitted, and saved all here!
 def unet_model(train_gen, test_gen):
